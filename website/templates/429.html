@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>429 - Too Many Requests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+        }
+        h1 {
+            font-size: 72px;
+            margin: 0 0 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            font-size: 24px;
+            margin: 0 0 20px 0;
+            font-weight: normal;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        .countdown {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>429</h1>
+        <h2>Too Many Requests</h2>
+        <p>You've been temporarily rate limited due to excessive requests.</p>
+        <div class="countdown" id="countdown">Please wait 60 seconds</div>
+        <div class="info">
+            <p>Why am I seeing this?</p>
+            <p>Our server has detected an unusually high number of requests from your IP address. This is a protective measure against automated attacks and abuse.</p>
+        </div>
+    </div>
+    
+    <script>
+        let seconds = 60;
+        const countdownEl = document.getElementById('countdown');
+        
+        const interval = setInterval(() => {
+            seconds--;
+            if (seconds > 0) {
+                countdownEl.textContent = 'Please wait ' + seconds + ' seconds';
+            } else {
+                countdownEl.textContent = 'You may try again now';
+                clearInterval(interval);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

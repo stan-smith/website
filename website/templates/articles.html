@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crabman - Articles</title>
+  <meta name="description" content="Articles by Crabman about Linux and open source">
+  <style>
+    br {
+      line-height: 5px;
+    }
+
+    @font-face {
+      font-family: 'PixelOperator';
+      src: url('/static/fonts/PixelOperator.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'PixelOperator-Bold';
+      src: url('/static/fonts/PixelOperator-Bold.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    /* Base styles */
+    body {
+      margin: 0;
+      font-family: 'PixelOperator', monospace;
+      line-height: 1.6;
+      background: #000000;
+      color: #ffffff;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: #111111;
+      border-bottom: 1px solid #4ba73f;
+      padding: 0.5rem 0;
+    }
+
+    #logo {
+      margin: 0;
+      display: inline-block;
+      font-family: 'PixelOperator-Bold', monospace;
+    }
+
+    #logo a {
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a {
+      color: #54B648;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    nav li {
+      margin-left: 1rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      font-family: 'PixelOperator', monospace;
+    }
+
+    nav a:hover {
+      color: #54B648;
+    }
+
+    /* Sections */
+    section {
+      padding: 1rem;
+      background: #0a0a0a;
+      margin-bottom: 1rem;
+      border: 1px solid #1a1a1a;
+    }
+
+    h2 {
+      color: #54B648;
+      border-bottom: 1px solid #54B648;
+      margin-top: 0;
+      font-family: 'PixelOperator-Bold', monospace;
+    }
+
+    /* Project specific styles */
+    .project-item {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dotted #333;
+    }
+
+    .project-item:last-child {
+      border-bottom: none;
+    }
+
+    .project-tech {
+      color: #888;
+      font-size: 0.9em;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 968px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+      
+      nav li {
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav id="nav-main">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="#articles">Articles</a></li>
+          <li><a href="/projects.html">Projects</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <h1 id="logo"><a href="/">mid linux blog</a></h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="content-grid">
+      <section id="articles">
+        <div class="container">
+          <h2 class="t__green">// Articles -----------------</h2>
+          
+          <div class="project-item">
+            <h3><a href="/articles/ansible-guide.html">A dumbasses guide to configuration management at scale with Ansible</a></h3>
+            <p>Learn how to manage your infrastructure effectively with Ansible, even if you're just starting out.</p>
+            <p class="project-tech">Posted: 2023-06-15</p>
+          </div>
+
+          <div class="project-item">
+            <h3><a href="/articles/tailscale-ansible.html">How Tailscale+Ansible saved my infrastructure</a></h3>
+            <p>A practical guide to combining Tailscale and Ansible for better infrastructure management.</p>
+            <p class="project-tech">Posted: 2023-06-01</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    document.querySelector('.nav-toggle')?.addEventListener('click', function() {
+      document.getElementById('nav-main').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
