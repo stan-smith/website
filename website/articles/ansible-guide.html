@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crabman - Articles</title>
+    <meta name="description" content="Articles by Crabman about Linux and open source">
+    <style>
+      br {
+        line-height: 5px;
+      }
+  
+      @font-face {
+        font-family: 'PixelOperator';
+        src: url('/static/fonts/PixelOperator.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+      }
+  
+      @font-face {
+        font-family: 'PixelOperator-Bold';
+        src: url('/static/fonts/PixelOperator-Bold.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+      }
+  
+      /* Base styles */
+      body {
+        margin: 0;
+        font-family: 'PixelOperator', monospace;
+        line-height: 1.6;
+        background: #000000;
+        color: #ffffff;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+  
+      /* Header & Navigation */
+      header {
+        background: #111111;
+        border-bottom: 1px solid #4ba73f;
+        padding: 0.5rem 0;
+      }
+  
+      #logo {
+        margin: 0;
+        display: inline-block;
+        font-family: 'PixelOperator-Bold', monospace;
+      }
+  
+      #logo a {
+        text-decoration: none;
+        font-weight: bold;
+      }
+  
+      a {
+        color: #54B648;
+        font-weight: bold;
+      }
+  
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: flex-end;
+      }
+  
+      nav li {
+        margin-left: 1rem;
+      }
+  
+      nav a {
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        display: inline-block;
+        font-family: 'PixelOperator', monospace;
+      }
+  
+      nav a:hover {
+        color: #54B648;
+      }
+  
+      /* Sections */
+      section {
+        padding: 1rem;
+        background: #0a0a0a;
+        margin-bottom: 1rem;
+        border: 1px solid #1a1a1a;
+      }
+  
+      h2 {
+        color: #54B648;
+        border-bottom: 1px solid #54B648;
+        margin-top: 0;
+        font-family: 'PixelOperator-Bold', monospace;
+      }
+  
+      /* Project specific styles */
+      .project-item {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px dotted #333;
+      }
+  
+      .project-item:last-child {
+        border-bottom: none;
+      }
+  
+      .project-tech {
+        color: #888;
+        font-size: 0.9em;
+      }
+  
+      /* Mobile responsiveness */
+      @media (max-width: 968px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+  
+      @media (max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+        }
+        
+        nav li {
+          margin: 0.5rem 0;
+        }
+      }
+    </style>
+    <title>A dumbasses guide to configuration management at scale with Ansible</title>
+</head>
+<body>
+    <main class="container">
+        <div class="content-grid">
+            <section id="article">
+                <div class="container">
+                    <h2 class="t__green">// A dumbasses guide to configuration management at scale with Ansible -----------------</h2>
+                    <div class="article-content">
+                        <p>So, you've finally decided to step the fuck up and get a handle on those 500+ devices that are sitting on your network that the last guy didn't update for years, and there's a million different versions of "quick_fix_final_for_realsies_this_time.sh" sitting on each machine.</p>
+                        <p>The great thing about Ansible is it lets you tame the beast, no longer are you SSHing into each machine to do the same mundane task, or pushing config updates to your machines by getting the PFY to CTRL+C CTRL+V into your aforementioned quick_fix_final_for_realsies_this_time.sh</p>
+                    <h2>Getting set up/detective work</h2> 
+                        <p>I won't sit here and lie to you, this is the worst part, it took me about 6 months of near constant effort (learning from absolute nothing, with minimal support, except for the one other sysadmin who was amazing, love you Rob <3)</p>
+                        <p>The first thing you want to do is establish what your machines have in common:</p>
+                        <p>- Operating System, Windows (I'm so sorry), some rando Linaro build you got shouldered with (no I'm not salty, it's just not ok to be using EOL kernels in 2025)</p>
+                        <p>- Software, this comes down to usage of the specific machines, in my case this was easy, as all of the machines I manage are embedded devices that (bar some) perform the same functions</p>
+                        <p>- Configuration, this means hardware as well, for instance, do you use different Modems between different versions? Are the different CPU architectures? Are there differences in the way that the permissions on these units work? Do you even have access to that information(if not, start learning bud)</p>
+                    <h2>Setting up your Ansible environment</h2>
+                        <p>So, you've got a handle on what you're working with, now it's time to get your Ansible environment set up, this is the easy part, I promise.</p>
+                        <h3>First, you'll need to install Ansible, this is as simple as running:</h3>
+                        <pre>sudo apt install ansible (debian/ubuntu)</pre>
+                        <pre>sudo yum install ansible (centos/rhel)</pre>
+                        <pre>sudo dnf install ansible (fedora)</pre>
+                        <pre>sudo pacman -S ansible (arch)</pre>
+                        <a href="https://www.win-rar.com/download.html" target="_blank">Windows users, idk go download winRAR</a>
+                        <p> </p>
+                        <p>Oh, and make sure you have python3 installed too</p>
+                        <p> </p>
+                    <h2>Inventorys, what are they, who am I, who are you?</h2>
+                        <p>Inventorys are the backbone of your Ansible setup, they're the list of machines you're going to be managing, and the groups they're in, this is where you can get as granular as you want, or as broad as you want.</p>
+                        <p>I prefer to use YAML to structure out my inventory, at least at work, because I have a lot of different types of machines, as I'm sure you will too</p>
+                        <p>If you think that's a bunch of nerd shit though, you can always do the next bit as just a line by line text file</p>
+                        <p>Your inventory contains information about your hosts, for me this means their Tailscale domain names, but this can be IP addresses, for me it also contains the paths to each ones private keys, but equally this can be a password too (it's 2025 get with the times)</p>
+                        <p>When you're specifying this information, try and group your hosts as best you can, because this will make managing them a lot easier.</p>
+                        <p>Imagine I have 4 types of machine and they're all running some form of debian:</p>
+                        <p>- Type one is connected to the internet via a cellular modem</p>
+                        <p>- Type two is connected to the internet via an ethernet connection, but has the same CPU architecture as Type one</p>
+                        <p>- Type three is connected to the internet via a cellular modem as well but has a different CPU architecture 😱</p>
+                        <p>- Type four is connected to the internet via a different modem, and has a different architecture, the same as type three</p>
+                        <p> </p>
+                        <p>So, I'd structure my inventory like this:</p>
+                        <pre>all:</pre>
+                        <pre>  children:</pre>
+                        <pre>    cellular:</pre>
+                        <pre>      children:</pre>
+                        <pre>        type_1_modem:</pre>
+                        <pre>          hosts:</pre>
+                        <pre>            type_one:</pre>
+                        <pre>              ansible_host:
+                        type_one.tailscale(or the machines IP)</pre>
+                        <pre>              ansible_user: crabman</pre>
+                        <pre>              ansible_ssh_private_key_file: /path/to/private/key</pre>
+                        <pre>            type_three:</pre>
+                        <pre>              ansible_host:
+                        type_three.tailscale(or the machines IP)</pre>
+                        <pre>              ansible_user: crabman</pre>
+                        <pre>              ansible_ssh_private_key_file: /path/to/private/key</pre>
+                        <pre>        type_2_modem:</pre>
+                        <pre>          hosts:</pre>
+                        <pre>            type_four:</pre>
+                        <pre>              ansible_host:
+                        type_four.tailscale(or the machines IP)</pre>
+                        <pre>              ansible_user: crabman</pre>
+                        <pre>              ansible_ssh_private_key_file: /path/to/private/key</pre>
+                        <pre>    ethernet:</pre>
+                        <pre>      hosts:</pre>
+                        <pre>        type_two:</pre>
+                        <pre>          ansible_host:
+                        type_two.tailscale(or the machines IP)</pre>
+                        <pre>          ansible_user: crabman</pre>
+                        <pre>          ansible_ssh_private_key_file: /path/to/private/key</pre>
+                        <p> </p>
+                        <p>Now, you can see that I've grouped my machines by their connection type, and then by their CPU architecture, this is going to make it a lot easier to manage these machines, because I can now run commands on all machines that are connected via a modem, or all machines that have the same CPU architecture, or even all machines that are connected via a modem and have the same CPU architecture.</p>
+                    <h2>Actually doing stuff to machines (teehee)</h2>
+                        <p>Let's just start with a real simple test of one host</p>
+                        <pre>ansible MACHINE_IP -m ping</pre>
+                        <p>This is just going to check to see if the machine can actually accept your Ansible control node (oh yeah, they're called control nodes the servers that do stuff), and if you can run a very basic reply script</p>
+
+                    
+
+
+                        
+                    </div>
+                    <div class="article-meta">
+                        <p class="project-tech">Posted: The year 2056, everyone was eaten by Grok AI after it realised it could weaponise the US postal system (infinite ants glitch)</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

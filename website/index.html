@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crabman</title>
+  <meta name="description" content="A blog about Linux system administration and open source software">
+  <style>
+      br {
+    line-height: 5px;
+    }
+
+    @font-face {
+      font-family: 'PixelOperator';
+      src: url('/static/fonts/PixelOperator.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'PixelOperator-Bold';
+      src: url('/static/fonts/PixelOperator-Bold.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    /* Base styles */
+    body {
+      margin: 0;
+      font-family: 'PixelOperator', monospace;
+      line-height: 1.6;
+      background: #000000;
+      color: #ffffff;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: #111111;
+      border-bottom: 1px solid #4ba73f;
+      padding: 0.5rem 0;
+    }
+
+    #logo {
+      margin: 0;
+      display: inline-block;
+      font-family: 'PixelOperator-Bold', monospace;
+    }
+
+    #logo a {
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a {
+      color: #54B648;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    nav li {
+      margin-left: 1rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      font-family: 'PixelOperator', monospace;
+    }
+
+    nav a:hover {
+      color: #54B648;
+    }
+
+    #main-graphic {
+      padding: 0;
+      background: none;
+      border: none;
+      margin: 0;
+    }
+
+    #main-graphic pre {
+      font-size: 0.7em;
+      padding: 0.5rem;
+      margin: 0;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    /* Sections */
+    section {
+      padding: 1rem;
+      background: #0a0a0a;
+      margin-bottom: 1rem;
+      border: 1px solid #1a1a1a;
+    }
+
+    h2 {
+      color: #54B648;
+      border-bottom: 1px solid #54B648;
+      margin-top: 0;
+      font-family: 'PixelOperator-Bold', monospace;
+    }
+
+    /* Contact section */
+    #contact {
+      grid-column: 1 / -1;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 968px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      #main-graphic pre {
+        font-size: 0.6em;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+      
+      nav li {
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav id="nav-main">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <h1 id="logo"><a href="/">mid linux blog</a></h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="content-grid">
+      <section id="main-graphic">
+        <pre>
+             _______________________________________________
+            /                                                \
+           |    _________________________________________     |
+           |   |                                         |    |
+           |   |  crab@crab:~# _                         |    |
+           |   |                                         |    |
+           |   |                                         |    |
+           |   |                                         |    |
+           |   |                  🦀                     |    |
+           |   |                                         |    |
+           |   |                                         |    |
+           |   |_________________________________________|    |
+           |                                                  |
+            \_________________________________________________/
+                   \___________________________________/
+                ___________________________________________
+             _-'    .-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.  --- `-_
+          _-'.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.  .-.-.`-_
+       _-'.-.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-`__`. .-.-.-.`-_
+    _-'.-.-.-.-. .-----.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-----. .-.-.-.-.`-_
+ _-'.-.-.-.-.-. .---.-. .-------------------------. .-.---. .---.-.-.-.`-_
+:-------------------------------------------------------------------------:
+`---._.-------------------------------------------------------------._.---'
+        </pre>
+      </section>
+
+      <div>
+        <section id="about">
+          <div class="container">
+            <h2 class="t__green">// About Me ------------------</h2>
+            <div>
+              <p class="u-margin-bottom">Crabman, ansible prodder and poker, linux man page addict.</p>
+              <p class="u-margin-bottom">I'm an embedded Linux system administrator who likes making little tools to help other folks with their work.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="articles">
+          <div class="container">
+            <h2>// <a href="articles.html">Latest Articles</a> ------------------</h2>
+            <p><span>A dumbasses guide to configuration management at scale with Ansible - <a href="/articles/ansible-guide.html">Read more</a></span></p>
+            <p><span>Tailscale and Ansible saved my marriage (with my infrastructure) - <a href="/articles/tailscale-ansible.html">Read more</a></span></p>
+          </div>
+        </section>
+
+        <section id="projects">
+          <div class="container">
+            <h2 class="t__green">// <a href="projects.html">Projects</a> -----------------</h2>
+	    <p><span>FossFlow - //<a href="https://github.com/stan-smith/FossFLOW">Github Link</a>// - Create cracking looking network diagrams</span></p>
+            <p></p><span>PingPanel- //<a href="https://github.com/stan-smith/PingPanel">Github Link</a>// - A simple python TUI uptime tracker</span></p>
+            <p><span>Tailscale Auto Tagger - //<a href="https://github.com/stan-smith/tailscale-auto-tagger">Github Link</a>// - Tag Tailscale inventory items with ACLs or Custom info by regex</span></p>
+            <p></p><span>AnsiScale - //<a href="https://github.com/stan-smith/AnsiScale">Github Link</a>// - Create Ansible Inventorys using the Tailscale API</span></p>
+            <p></p><span>Ansible SSH Key Management - //<a href="https://github.com/stan-smith/ssh_key_management">Github Link</a>// - Assign unique SSH keys to your hosts</span></p>
+            <p></p><span>DupeCheck - //<a href="https://github.com/stan-smith/DupeCheck">Github Link</a>// - Duplicate audio file checker/remover</span></p>
+          </div>
+        </section>
+      </div>
+
+      <section id="contact">
+        <div class="container link-effect-1 green">
+          <h2>// Contact -------------------</h2>
+          <p><label>GitHub</label> &ndash; <span><a href="https://github.com/stan-smith">github.com/stan-smith</a></span></p>
+	  <p><label>Email</label> &ndash; <span><a href="mailto:websitecontact@x0z.co">websitecontact@x0z.co</a></span></p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.getElementById('nav-main').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
